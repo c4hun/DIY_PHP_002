@@ -1,18 +1,14 @@
 <?php
 
-//ouverture d'une connection à la BDD(Base de données) Emmanuel_Ravrat
 $objetPdo = new PDO('mysql:host=localhost;dbname=PDO_001','root','root');
 
-//préparation de la requête d'insertion (SQL)
 $pdoStat = $objetPdo->prepare('INSERT INTO contact VALUES (NULL, :nom, :prenom, :tel, :email)');
 
-//Définition les marqueur à une valuer
 $pdoStat->bindValue(':nom', $_POST['lastName'], PDO::PARAM_STR);
 $pdoStat->bindValue(':prenom', $_POST['firstName'], PDO::PARAM_STR);
 $pdoStat->bindValue(':tel', $_POST['phone'], PDO::PARAM_STR);
 $pdoStat->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
 
-//éxécution de la requête préparée
 $insertIsOk = $pdoStat->execute();
 
 if($insertIsOk){
