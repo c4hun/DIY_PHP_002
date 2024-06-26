@@ -1,15 +1,11 @@
 <?php
 
-// Connection
 $objetPdo = new PDO('mysql:host=localhost;dbname=PDO_001','root','root');
 
-// Request preparation
 $pdoStat = $objetPdo->prepare('DELETE FROM contact WHERE id=:num LIMIT 1');
 
-// Liaison du paramètre nommé. 3eme argument indigue, valer type INT = une identifiante, une securite assure 
 $pdoStat->bindValue(':num', $_GET['numContact'], PDO::PARAM_INT);
 
-// Executing request
 $executeIsOk = $pdoStat->execute();
 
 if($executeIsOk){
