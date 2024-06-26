@@ -1,17 +1,16 @@
 <?php
 
-// Connection
 $objetPdo = new PDO('mysql:host=localhost;dbname=PDO_001','root','root');
 
-// Request preparation
+
 $pdoStat = $objetPdo->prepare('SELECT * FROM contact WHERE id = :num');
 
 $pdoStat->bindValue(':num',$_GET['numContact'],PDO::PARAM_INT);
 
-// Executing request
+
 $executeIsOk = $pdoStat->execute();
 
-// récupérer le contact
+
 $contact = $pdoStat->fetch();
 
 ?>
