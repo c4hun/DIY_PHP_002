@@ -1,19 +1,15 @@
 <?php
 
-// Connection
 $objetPdo = new PDO('mysql:host=localhost;dbname=PDO_001','root','root');
 
-// Request preparation
 $pdoStat = $objetPdo->prepare('UPDATE contact set nom=:nom, prenom=:prenom, tel=:tel, mail=:mail WHERE id=:num LIMIT 1');
 
-// Liaison du paramètre nommé. 3eme argument indigue, valer type INT = une identifiante, une securite assure 
 $pdoStat->bindValue(':num', $_POST['numContact'], PDO::PARAM_INT);
 $pdoStat->bindValue(':nom', $_POST['lastName'], PDO::PARAM_STR);
 $pdoStat->bindValue(':prenom', $_POST['firstName'], PDO::PARAM_STR);
 $pdoStat->bindValue(':tel', $_POST['phone'], PDO::PARAM_STR);
 $pdoStat->bindValue(':mail', $_POST['email'], PDO::PARAM_STR);
 
-// Executing request
 $executeIsOk = $pdoStat->execute();
 
 if($executeIsOk){
