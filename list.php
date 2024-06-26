@@ -2,15 +2,10 @@
 
 $objetPdo = new PDO('mysql:host=localhost;dbname=PDO_001','root','root');
 
-// préparation de la requête (dans le cas présent, utiliser une requête préparée n'a aucun intérêt, mais je vais utiliser la même méthode que l'insertion pour rester simple. Pour d'avantage d'informations, je vous invite à visualiser la ou les vidéo(s) sur les requêtes préparées disponible sur chaîne Emmanuel Ravrat )
-//préparation de la requête d'insertion (SQL) 
-// from contact TABLE, not the file name
 $pdoStat = $objetPdo->prepare('SELECT * FROM contact ORDER BY nom ASC');
 
-//exécution de la requête
 $executeIsOk = $pdoStat->execute();
 
-//récupération des résultas en une seule fois. Pour d'autre méthodes d erécupération, regardez les vidéos adéquates dans la playlist "PHP - PDO"
 $contacts = $pdoStat->fetchAll();
 ?>
 
